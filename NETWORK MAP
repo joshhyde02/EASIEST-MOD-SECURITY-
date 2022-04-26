@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-04-26T19:03:22.115Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.75 Safari/537.36" etag="CbktJBv0V3qMEVbBm-0R" version="17.4.6" type="github">
+<mxfile host="app.diagrams.net" modified="2022-04-26T19:03:45.799Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.75 Safari/537.36" etag="-G1uCHIuLfWhuMu6qXnL" version="17.4.6" type="github">
   <diagram id="fuLQBKyfr4lSTWQZwgRJ" name="Page-1">
     <mxGraphModel dx="1896" dy="2128" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -202,7 +202,7 @@
             <mxPoint x="620" y="-940" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="gpg6IuT_m11jj4e00FOV-55" value="192.168.150.245&lt;br&gt;ports 139,135,445" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+        <mxCell id="gpg6IuT_m11jj4e00FOV-55" value="192.168.150.245&lt;br&gt;ports 139,135,445&lt;br&gt;run --script smb-os-discovery.nse&amp;nbsp;" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
           <mxGeometry x="555" y="-1080" width="140" height="140" as="geometry" />
         </mxCell>
         <mxCell id="gpg6IuT_m11jj4e00FOV-56" value="Text" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
