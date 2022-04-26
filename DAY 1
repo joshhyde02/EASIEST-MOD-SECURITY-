@@ -1,0 +1,8 @@
+STACK NUMBER 10
+USERNAME - JOHY-003-M	
+PASSWORD - WTnHQQGQO6dAiPA/ Hyde_0508
+PIVOT - 10.50.36.21
+WINDOWS OP -- 192.168.65.10, 10.50.23.7
+      - xfreerdp /v:10.50.23.7 /u:student /p:password /dynamic-resolution /clipboard
+LINUX OP   -- 192.168.65.20, 10.50.30.199
+      - ssh -X student@10.50.30.199
