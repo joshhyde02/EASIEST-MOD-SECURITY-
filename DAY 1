@@ -6,3 +6,129 @@ WINDOWS OP -- 192.168.65.10, 10.50.23.7
       - xfreerdp /v:10.50.23.7 /u:student /p:password /dynamic-resolution /clipboard
 LINUX OP   -- 192.168.65.20, 10.50.30.199
       - ssh -X student@10.50.30.199
+PENETRATION TESTING    
+        -- PHASE 1 - MISSION DEFINITION
+                  -- define mission goals and targets
+                  - detemrine scope of mission 
+                  - define roe
+       -- PHASE 2 - RECON
+                  - infomration gathering about the target through public sources (OSINT) 
+       -- PHASE 3 - FOOTPRINTING 
+                  - accumulate data through scanning and/or interaciton with the target/target resources
+       -- PHASE 4 - EXPLOITATION AND INITIAL ACCESS
+                  - gain initial foothold on network
+       -- PHASE 5 - POST-EXPLOITATION 
+                  - Establish persistence 
+                  - escalate privileges
+                  - cover your tracks
+                  - exfiltrate target data
+       -- PHASE 6 - DOCUMENT MISSION
+                  - document and report mission details 
+PEN TESTING REPORTING
+           -- Operation notes vs formalized reporting
+           -- executive summary
+           -- technical summary
+           --  reasons to report
+           -- what to report
+           -- screen captures
+VULNERABILITY AND EXPLOITATION RESEARCH 
+           -- OBJECTIVES
+                  - understand initial access
+                  - understand process to con duct research to pair vulnerability to exploit
+                  - identify requirements to accomplish a missions objectives
+           -- INITIAL ACCESS
+                  - what is initial access
+                  - most common method for gaining intial access
+           -- INTRODUCTION TO EXPLOIT RESEARCH
+                  - transition from reconnaissance to weaponization 
+                  - leverage intelligence/data of network
+                  - pairing vulnerabilities to exploits
+                  - aligning exploits to perational objectives
+           -- RESEARCH
+                  - open soruces
+                  - organization capabilities
+           -- CAPABILITIES
+                  - mission objectives drive requirements
+                        - collection 
+                        - effectys
+                  - additional functionality to fulfill requirements 
+                  - communication security 
+           -- TESTING
+                  - exploit development occurs from pairing and mission requirement 
+                        - tested and verified for success
+                  - testing provides a number of benefits
+                        - faster time to breakout of ininital foothold
+                        - reduce risk of detection and tool failure
+                        - improved recovery times
+           -- PLAN
+                  - procure hardware and software
+                  - assign developer
+                  - assign a test to develop TTPs and break it
+                  - document testing results
+                  - testing environment
+OS INFORMATION ( LINUX ) 
+          - lsb_release -a 
+          - cat /etc/os-release 
+KERNEL INFORMATION ( LINUX) 
+          - uname --help 
+          - uname -a 
+ BOTH KERNEL AND OS ( LINUX )     
+         - hostnamectl 
+EXPLOIT DATABASE
+         - https://www.exploit-db.com/
+-------------------------------------------------
+SCANNING AND RECONNAISSANCE 
+            - OSINT
+                  - appropriate documentation practices
+                  - use of collected data
+                  - collection methods
+            - DATA TO COLLECT
+                  - web data
+                        - cached content, analytics, proxy web applicaiton, command line interrogaiton
+                  - sensitive data
+                        - Business Data, Profiles, Non-Profits/Charities, Business Filings, Historical and Public Listings
+                  - publicly accessbile
+                        - Physical Addresses, Phone Numbers, Email Addresses, User Names, Search Engine Data, Web and Traffic Cameras, 
+                        - wireless Access Point Data
+                  - social media
+                        - Twitter, Facebook, Instagram, People Searches, Registry and Wish Lists
+                  - domain and IP data
+                        - DNS Registration, IP Address Assignments, Geolocation Data, Whois
+           -  SCRAPING DATA
+                  - import lxml.html
+                  - import requests
+                  - page = requests.get('http://quotes.toscrape.com')
+                  - tree = lxml.html.fromstring(page.content)
+                  - authors = tree.xpath(.//small[@class="author"]/text()')
+                  - print ('Authors: ', authors)
+                  - Authors: ['Albert Einstein', 'J.K Rowling', 'Albert EInstein', etc
+HOST DISCOVERY
+      - PING SWEEPS
+            - LINUX - for i in {1..254} ;do (ping -c 1 192.168.1.$i | grep "bytes from" &) ;done
+            - WINDOWS - for /L %i in (1,1,255) do @ping -n 1 -w 200 192.168.1.%i > nul && echo 192.168.1.%i is up.
+      - HOST ENUMERATION (OPEN PORTS)
+            - nmap -sS -Pn 8.8.8.8 -p 135-139,22,80,443,21,8080
+                  - nmap requires the "-Pn" to be run through proxychains
+                  - nmap -Pn -T5 192.168.65.10 --script=banner.nse -p 22,3389, runs banner script to find what services are running on specific ports, in case where -sV failed
+            - nc -z -v -w 1 8.8.8.8 440-443 
+                  - nc does not ping an ip address before enumerating ports, therefore itss cracked over proxychains
+      - HOST INTERROGATION
+            - use nc to interrogate a server
+                  - nc -Cv 127.0.0.1 80
+                  - Type: GET / HTTP/1.0 - to get a HTTP response header from the server
+            - use nmap to perform service detection on port 22 of your opstation
+                  - nmap -sV 127.0.0.1 -p 22
+            - using nikto to perform a vulnerability scan on your opstation 
+                  - nikto -h 127.0.0.1 -p 80
+RECONNAISSANCE CTFD 
+           - FTP
+SHAVING WHATEVER THE FUCKITS CALLED
+           - http://localhost:7777/
+bruh
+to pull smb bullshit
+proxychains nmap -Pn 192.168.150.245 --script smb-os-discovery.nse -p 139,445
+
+                  
+
+      
+ 
