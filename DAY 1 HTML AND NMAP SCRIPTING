@@ -127,8 +127,8 @@ SHAVING WHATEVER THE FUCKITS CALLED
 bruh
 to pull smb bullshit
 proxychains nmap -Pn 192.168.150.245 --script smb-os-discovery.nse -p 139,445
+do not forget to run nmap scripts against open ports 
 
-                  
 
       
  
