@@ -1,0 +1,130 @@
+RESOURCES THAT CAN HELP WITH REVERSE ENGINEERING
+- Reverse engineering workflow
+- x86 student guide
+- memory diagram 
+- stack practice
+- the stack
+ 
+ 
+ x86_64 ASSEMBLY
+ - there are 16 general purpose 64 bit registers
+ - %rax - the first return register
+ - %rbp - the base pointer that keeps track of the base of the stack
+ - %rsp - the stack pointer that points to the top of the stack
+ - will look like [%ebp - 0x8] as an argument passed toa function
+ - C+ code > compile > program.exe
+ - program.exe > decomplier > low level language (assembly) 
+ - intsruction Operand1, Opearand 2
+    - operands will consist of a register value, a hex value, or a memory address
+          - registers are variables, physical registers on motherboard
+          - 16 general registes
+          - base pointer 
+          - stack pointer
+          - registers can store values
+ - Common terms for x86 
+      - heap - memory that can be allocated and deallocated
+      - stack - a contiguous section o fmemory used for passing arguments 
+      - general register - a multipurpose register that can be used by either programmer or user to store data or memory location address
+      - control register - a processor register that changes or controls the behavior of a cpu 
+      - Flags register - contains the current state of the processor
+- x86 memory offset 
+    - There is one instruction pointer register that points to the memory offset of the next instruction in the code segment
+    - 64 bit - RIP 
+    - 32 bit - EIP 
+    - 16 bit - IP 
+- x86 common instruction pointers
+ - MOV - move source to destination
+
+ - PUSH - push source onto stack
+
+ - POP - Pop top of stack to destination
+
+ - INC - Increment source by 1
+
+ - DEC - Decrement source by 1
+
+ - ADD - Add source to destination
+
+ - SUB - Subtract source from destination
+
+ - CMP - Compare 2 values by subtracting them and setting the %RFLAGS register. ZeroFlag set means they are the same.
+
+ - JMP - Jump to specified location
+
+ - JLE - Jump if less than or equal
+
+ - JE - Jump if equal
+ OPERAND
+    - hex value | 0x3
+    - register | eax 
+    - memory address | 0x00000001
+ DATA MOVEMENT AND STORAGE
+    - MOV 
+    LEA
+ ARITHMETIC
+    - ADD
+    - SUB
+    - INC
+    - DEC
+    - MUL
+    - DIV
+ LOGIC
+    - OR
+    - AND 
+    - XOR
+    - SHR 
+    - SHL
+ STACK
+    - PUSH
+    - POP
+    - CALL 
+    - RET 
+ CONTROL FLOW
+    - TEST
+    - CMP 
+    - JMP - UNCONDITIONAL JUMP
+    - JLE/JE/JGE - CONDITIONAL JUMP
+ EXAMPLE 1 
+    - move eax,0x64
+          - moves the value of 0x64 into eax
+          - so it reads from right to left
+ EXAMPLE 2 
+    - cmp eax - ebx 
+    - cmp 231-231 = 0 # flags register: zero flag:
+    FLAGS REGISTER
+      - zero flag (0) = 1
+      - sign flag (negative) = 0 
+      - carry flag ( too small or large) = 0 
+MAIN 
+    - mov rax, 16 | rax=16
+    - push rax
+    - jmp mem2
+MEM 1:
+  move rax, 0 
+  ret 
+MEM 2: 
+  - pop r8
+  cmp rax, r8
+  je mem1
+main () 
+    - entry point and start of the program
+    - printf ():
+      - sends formatted output to stdout
+      - %d = signed decimal integer
+      - %f = decimal floating point
+      - %s = strings 
+    - fgets(): 
+        - reads a line from the specifed stream and stores it into the string pointed to by str
+        - char *fgets(char *str, int n, FILE,  *stream) 
+    - strcmp()
+        - compares str1 and str2
+    - reads from stdin
+DOWNLOADS    
+    - windows and linux ops station 
+     - scp it retard 
+     - demo1.c
+     demo1.exe
+     demo2.c
+     demo2.exe
+        
+    
