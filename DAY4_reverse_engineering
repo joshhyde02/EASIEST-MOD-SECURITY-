@@ -126,5 +126,37 @@ DOWNLOADS
      demo1.exe
      demo2.c
      demo2.exe
+
+1. Static analysis  
+   - file <filename> 
+   - strings -n # <filename>
+       - strings -10 demo.exe | less
+   - gdb - GNU DEBUGGER
+   - Peda = GDB PLUGIN
+   - gdb demo.exe 
+   - GDB commands
+       - disass main
+   - GDB-Peda commands: 
+       - pdisass main
+2. Behavior Analysis 
+3. Dynamic analysis 
+  - sysinternals tools: procmon, procexp 
+4. disassembler and Decompiler 
+   - Ghidra 
+   - IDA 
+   - FIle > NEw PRoject > Non-shared project > C:\Users\student > COSC22003 > Finish 
+   - File > IMport FIle or import (I) > <filename> 
+   - sha256sum demo.exe
+   - md5sum demo.exe
+   - string search "enter key"
+   - to patch right click and select patch
+   
+   - after patching export file as a binary with a different name so it is not overwritten 
+   -
+   
+5.
         
-    
+CTFD
+  - 0041C010
+  - 0x34cf
+  - 92,138,184,230,276,322,368,414,460,
