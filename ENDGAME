@@ -1,1 +1,31 @@
-<mxfile host="app.diagrams.net" modified="2022-05-13T11:51:10.759Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36" version="18.0.3" etag="zZ12EgyJrqc_mBdqO0Q_" type="github"><diagram id="ekvPn1WQzFPx9JVIDpzO">UzV2zq1wL0osyPDNT0nNUTV2VTV2LsrPL4GwciucU3NyVI0MMlNUjV1UjYwMgFjVyA2HrCFY1qAgsSg1rwSLBiADYTaQg2Y1AA==</diagram></mxfile>
+<mxfile host="app.diagrams.net" modified="2022-05-13T11:55:02.019Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36" etag="xuqTjUwYLXyVXqm5N4lx" version="18.0.3" type="github">
+  <diagram id="ekvPn1WQzFPx9JVIDpzO" name="Page-1">
+    <mxGraphModel dx="1422" dy="771" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="Uar-rfjixej9b48Bai00-2" value="10.50.27.57&lt;br&gt;GREY HOST&lt;br&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="490" y="290" width="100" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="Uar-rfjixej9b48Bai00-3" value="linops&amp;nbsp;&lt;br&gt;10.50.30.199" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="170" y="190" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Uar-rfjixej9b48Bai00-4" value="winops&amp;nbsp;&lt;br&gt;10.50.23.7" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="150" y="360" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Uar-rfjixej9b48Bai00-5" value="" style="endArrow=none;html=1;rounded=0;entryX=0.01;entryY=0.94;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="Uar-rfjixej9b48Bai00-4" target="Uar-rfjixej9b48Bai00-2">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="410" as="sourcePoint" />
+            <mxPoint x="450" y="360" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Uar-rfjixej9b48Bai00-6" value="" style="endArrow=none;html=1;rounded=0;exitX=0.988;exitY=0.425;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="Uar-rfjixej9b48Bai00-3" target="Uar-rfjixej9b48Bai00-2">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="310" y="290" as="sourcePoint" />
+            <mxPoint x="360" y="240" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
