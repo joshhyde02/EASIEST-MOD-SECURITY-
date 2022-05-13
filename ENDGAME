@@ -1,10 +1,10 @@
-<mxfile host="app.diagrams.net" modified="2022-05-13T12:04:50.945Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36" etag="rQF6OTPoTqB108JD-ufD" version="18.0.3" type="github">
+<mxfile host="app.diagrams.net" modified="2022-05-13T14:15:06.381Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36" etag="h0ScA1gybQ2anK-QjJrE" version="18.0.3" type="github">
   <diagram id="ekvPn1WQzFPx9JVIDpzO" name="Page-1">
     <mxGraphModel dx="1422" dy="771" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="Uar-rfjixej9b48Bai00-2" value="10.50.27.57&lt;br&gt;T1" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+        <mxCell id="Uar-rfjixej9b48Bai00-2" value="10.50.27.57&lt;br&gt;T1&lt;br&gt;port: 22,80&amp;nbsp;&lt;br&gt;ministry defense" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
           <mxGeometry x="490" y="290" width="100" height="100" as="geometry" />
         </mxCell>
         <mxCell id="Uar-rfjixej9b48Bai00-3" value="linops&amp;nbsp;&lt;br&gt;10.50.30.199" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
